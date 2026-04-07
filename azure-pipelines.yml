@@ -5,31 +5,13 @@ trigger:
 pool:
   name: Default
 
-stages:
-- stage: Build
-  displayName: 'Build Stage'
-  jobs:
-  - job: BuildJob
-    displayName: 'Build Job'
-    steps:
-    - template: templates/build-steps.yml  # include build steps
-
-- stage: Test
-  displayName: 'Test Stage'
-  dependsOn: Build
-  jobs:
-  - job: TestJob
-    displayName: 'Test Job'
-    steps:
-    - template: templates/test-steps.yml   # include test steps
-
-- stage: DeployToStaging
-  displayName: 'Deploy to Staging'
-  dependsOn: Test
-  jobs:
-  - job: DeployStagingJob
-    displayName: 'Deploy to Staging Job'
-    steps:
-    - template: templates/deploy-steps.yml
-      parameters:
-        environment: 'staging'
+jobs:
+- job: ContainerJob
+  displayName: 'Run in Container'
+  container:
+    image: node:18
+  steps:
+  - script: node --version
+    displayName: 'Check Node version'
+  - script: echo "Hello from container!"
+    displayName: 'Hello'
