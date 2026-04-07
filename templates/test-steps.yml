@@ -1,0 +1,4 @@
+# templates/test-steps.yml
+steps:
+- script: echo "Testing..."
+  displayName: 'Test'
