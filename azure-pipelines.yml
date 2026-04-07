@@ -26,12 +26,10 @@ stages:
 - stage: DeployToStaging
   displayName: 'Deploy to Staging'
   dependsOn: Test
-  variables:
-  - group: staging-vars
   jobs:
   - job: DeployStagingJob
     displayName: 'Deploy to Staging Job'
     steps:
-    - template: templates/deploy-steps.yml  # include deploy steps
+    - template: templates/deploy-steps.yml
       parameters:
         environment: 'staging'
