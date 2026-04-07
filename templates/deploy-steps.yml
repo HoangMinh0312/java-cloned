@@ -1,0 +1,8 @@
+# templates/deploy-steps.yml
+parameters:
+- name: environment
+  type: string
+
+steps:
+- script: echo "Deploying to ${{ parameters.environment }}..."
+  displayName: 'Deploy to ${{ parameters.environment }}'
