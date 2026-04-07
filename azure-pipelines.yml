@@ -14,4 +14,4 @@ jobs:
   - script: node --version
     displayName: 'Check Node version'
   - script: echo "Hello from container!"
-    displayName: 'Hello'
+    displayName: 'Hello world'
