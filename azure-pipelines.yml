@@ -9,12 +9,6 @@ trigger:
 pool:
   name: Default
 
-trigger:
-- main
-
-pool:
-  vmImage: 'ubuntu-latest'
-
 stages:
 - stage: Build
   displayName: 'Build Stage'
