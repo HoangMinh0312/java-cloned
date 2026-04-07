@@ -47,6 +47,7 @@ stages:
       displayName: 'Build and deploy to staging'
 
   - job: DeployStagingJobWithValidation
+    pool: server
     timeoutInMinutes: 4320 # job times out in 3 days
     displayName: 'Deploy to Staging Job'
     steps:
@@ -72,6 +73,7 @@ stages:
       displayName: 'Run deployment commands'
   - job: waitForValidation
     displayName: Wait for external validation
+    pool: server
     timeoutInMinutes: 4320 # job times out in 3 days
     steps:
     - task: ManualValidation@1
