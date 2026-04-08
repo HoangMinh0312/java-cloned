@@ -5,6 +5,7 @@
   "name": "Simple Decorator",
   "publisher": "my-publisher",
   "targets": [{ "id": "Microsoft.VisualStudio.Services" }],
+  "categories": ["Azure Pipelines"],
   "contributions": [
     {
       "id": "my-decorator",
