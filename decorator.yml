@@ -1,0 +1,4 @@
+# decorator.yml
+steps:
+- script: echo "Hello from decorator"
+  displayName: Injected Step

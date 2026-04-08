@@ -1,0 +1,19 @@
+{
+  "manifestVersion": 1,
+  "id": "simple-decorator",
+  "version": "1.0.0",
+  "name": "Simple Decorator",
+  "publisher": "my-publisher",
+  "targets": [{ "id": "Microsoft.VisualStudio.Services" }],
+  "contributions": [
+    {
+      "id": "my-decorator",
+      "type": "ms.azure-pipelines.pipeline-decorator",
+      "targets": ["ms.azure-pipelines-agent-job.pre-job-tasks"],
+      "properties": {
+        "template": "decorator.yml"
+      }
+    }
+  ],
+  "files": [{ "path": "decorator.yml", "addressable": true }]
+}
