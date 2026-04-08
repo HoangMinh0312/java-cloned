@@ -9,15 +9,29 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
 stages:
-- stage: A
+- stage: Build
   jobs:
-  - job: A1
+  - job: JobA
     steps:
-      - script: echo Hello Stage A!
-- stage: B
-  condition: and(succeeded(), eq(variables.isMain, true))
-  jobs:
-  - job: B1
+    - script: |
+        echo "##vso[task.setvariable variable=testResult;isOutput=true]passed"
+      name: setVar
+      displayName: Set output variable
+
+  - job: JobB
+    dependsOn: JobA
+    variables:
+      result: $[ dependencies.JobA.outputs['setVar.testResult'] ]
+    condition: eq(dependencies.JobA.outputs['setVar.testResult'], 'passed')
     steps:
-      - script: echo Hello Stage B!
-      - script: echo $(isMain)
+    - script: echo "JobB chạy vì testResult = $(result)"
+      displayName: Run if passed
+
+  - job: JobC
+    dependsOn: JobA
+    variables:
+      result: $[ dependencies.JobA.outputs['setVar.testResult'] ]
+    condition: eq(dependencies.JobA.outputs['setVar.testResult'], 'failed')
+    steps:
+    - script: echo "JobC chạy vì testResult = failed"
+      displayName: Run if failed
